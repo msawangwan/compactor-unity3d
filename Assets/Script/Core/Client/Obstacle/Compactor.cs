@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
-public class Compactor : MonoBehaviour {
+namespace mUnityFramework.Game.Compactor {
+    public class Compactor : MonoBehaviour {
 
+    }
 }
