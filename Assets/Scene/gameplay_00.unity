@@ -344,8 +344,8 @@ Transform:
   m_Children:
   - {fileID: 1947937354}
   - {fileID: 487422339}
-  m_Father: {fileID: 2093614244}
-  m_RootOrder: 1
+  m_Father: {fileID: 467299164}
+  m_RootOrder: 2
 --- !u!1 &161762455 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000012241183664, guid: cb89f1a73396b684cb57dfa1b194555d,
@@ -907,6 +907,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2093614244}
+  - {fileID: 859520893}
+  - {fileID: 131238252}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &487422338
@@ -1532,8 +1534,8 @@ Transform:
   m_Children:
   - {fileID: 1796025751}
   - {fileID: 2092927549}
-  m_Father: {fileID: 2093614244}
-  m_RootOrder: 0
+  m_Father: {fileID: 467299164}
+  m_RootOrder: 1
 --- !u!1 &965164908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,7 +2635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1796025751
 Transform:
   m_ObjectHideFlags: 0
@@ -3507,7 +3509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1085724fd379f4154824e13f6046b20a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballContainerTransform: {fileID: 339579046}
 --- !u!50 &2088075348
 Rigidbody2D:
   serializedVersion: 2
@@ -3654,6 +3655,7 @@ GameObject:
   - 50: {fileID: 2092927550}
   - 114: {fileID: 2092927553}
   - 114: {fileID: 2092927552}
+  - 114: {fileID: 2092927554}
   m_Layer: 0
   m_Name: falling
   m_TagString: Untagged
@@ -3734,8 +3736,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Axis: 0
   FrontFacing: 0
-  weight: 1000
-  downwardPressure: 100
+  increment: 0.3
+  tickInterval: 2
+--- !u!114 &2092927554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092927548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b51ee5b5d6fd44fad05848285a722b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upForce: 5
 --- !u!1 &2093614243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3747,7 +3761,7 @@ GameObject:
   - 4: {fileID: 2093614244}
   - 114: {fileID: 2093614245}
   m_Layer: 0
-  m_Name: wall_boundry
+  m_Name: wall_manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3764,9 +3778,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 859520893}
-  - {fileID: 131238252}
+  m_Children: []
   m_Father: {fileID: 467299164}
   m_RootOrder: 0
 --- !u!114 &2093614245

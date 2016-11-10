@@ -26,7 +26,7 @@ namespace mUnityFramework.Game.Pong {
 			Surface.DrawNormal();
 		}
 
-		private void OnTriggerEnter2D (Collider2D c) {
+		protected virtual void OnTriggerEnter2D (Collider2D c) {
 			Ball b = c.gameObject.GetComponent<Ball>();
 			if (b) {
 				Vector3 rf = b.Force.SetVelocityTo (

@@ -3,8 +3,10 @@
 namespace mUnityFramework.Game.Pong {
     [RequireComponent(typeof(Rigidbody2D))]
     public class FallingWall : Wall {
-        [SerializeField] private float weight = 1000;
-        [SerializeField] private float downwardPressure = 10.0f;
+        [SerializeField] private float increment;
+        [SerializeField] private float tickInterval;
+
+        private float tickTime = 0.0f;
 
         private GameController gc = null;
 
@@ -18,20 +20,20 @@ namespace mUnityFramework.Game.Pong {
             }
         }
 
-        private float downForce {
+        private float nextTick {
             get {
-                return Mathf.Abs(downwardPressure) * -1f;
+                return Time.time + tickInterval;
             }
         }
 
-        public void PushUp () {
-            if (rb) {
-                rb.AddForce (new Vector3 (0, downForce * 0.5f * -1f, 0));
+        private bool isTimeForUpdate {
+            get {
+                return Time.time > tickTime;
             }
         }
 
         private void Start () {
-            rb.mass = weight;
+            tickTime = 0;
         }
 
         private void FixedUpdate () {
@@ -43,11 +45,21 @@ namespace mUnityFramework.Game.Pong {
                 case GameController.State.Enter:
                     return;
                 case GameController.State.Execute:
-                    rb.AddForce (new Vector3 (0, downForce, 0));
+                    if (isTimeForUpdate) {
+                        tickTime = nextTick;
+                        Vector3 newPosition = transform.position - new Vector3 (0, increment, 0);
+                        rb.MovePosition (newPosition);
+                    }
                     return;
                 default:
                     return;
             }
+        }
+
+        protected override void OnTriggerEnter2D (Collider2D c) {
+            base.OnTriggerEnter2D(c);
+            Vector3 newPosition = transform.position + new Vector3 (0, increment, 0);
+            rb.MovePosition (newPosition);
         }
     }
 }
