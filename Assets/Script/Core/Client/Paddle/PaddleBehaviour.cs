@@ -6,8 +6,9 @@ namespace mUnityFramework.Game.Pong {
 	public abstract class PaddleBehaviour : MonoBehaviour {
 		private Paddle cachedPaddle = null;
 
-		protected System.Action<string> info =
-			msg => Debug.LogFormat("[info][paddleBehaviour][{0}]", msg);
+		protected System.Action<string> info = msg => Debug.LogFormat (
+			"[info][paddleBehaviour][{0}]", msg
+		);
 
 		protected Paddle paddle {
 			get {
