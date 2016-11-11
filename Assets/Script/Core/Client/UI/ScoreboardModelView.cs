@@ -20,6 +20,10 @@ public class ScoreboardModelView : MonoBehaviour {
         // bulgeAnimation.BulgeAnimation();
     }
 
+    public void Reset () {
+        txtScore.text = 0.ToString();
+    }
+
     private void Awake () {
         if (instances.Count > 0) {
             instances[0] = this;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using mUnityFramework.UI.ObjectModel;
 using mUnityFramework.Game.Pong;
 
 namespace mUnityFramework.Game {
@@ -11,12 +12,14 @@ namespace mUnityFramework.Game {
         }
 
         public ScoreboardModelView scoreboardModelView = null;
+        public LevelTimer levelTimer;
 
         public Paddle p;
-        public int step = 0;
+
+        private int step = 0;
+        private bool canContinue = false;
 
         private CountDown countdown = null;
-        private bool canContinue = false;
 
         private Score score = null;
 
@@ -38,6 +41,14 @@ namespace mUnityFramework.Game {
             if (! scoreboardModelView) {
                 scoreboardModelView = ScoreboardModelView.Instance;
             }
+
+            scoreboardModelView.Reset ();
+
+            if (! levelTimer) {
+                levelTimer = GameObject.FindObjectOfType<LevelTimer>();
+            }
+
+            levelTimer.Reset ();
 
             CollectableNotifier.RaisedOnCollectableCollected += HandleOnCollectableNotifierNotify;
         }
@@ -63,6 +74,7 @@ namespace mUnityFramework.Game {
                     if (step == 1) {
                         if (canContinue) {
                             step = 0;
+                            levelTimer.SetStartOffset ();
                             ControllerState = GameController.State.Execute;
                         }
                     }
@@ -76,6 +88,7 @@ namespace mUnityFramework.Game {
                     }
 
                     if (step == 1) {
+                        levelTimer.PrintTime ();
                         return;
                     }
 
