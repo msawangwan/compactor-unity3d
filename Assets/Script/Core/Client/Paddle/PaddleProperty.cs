@@ -9,7 +9,7 @@ namespace mUnityFramework.Game.Pong {
 
         [SerializeField] private float launchPowerScalar;
         [SerializeField] private float launchSteepness;
-        [SerializeField] private float launchMaximumMultiplier;
+        [SerializeField] private float launchMaximumForce;
         [SerializeField] private float launchOffset;
 
         public float hPosition { 
@@ -42,9 +42,9 @@ namespace mUnityFramework.Game.Pong {
             }
         }
 
-        public float LaunchMaximumMultiplier {
+        public float LaunchMaximumForce {
             get {
-                return launchMaximumMultiplier;
+                return launchMaximumForce;
             }
         }
 
