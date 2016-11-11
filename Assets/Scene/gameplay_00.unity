@@ -2538,7 +2538,7 @@ MonoBehaviour:
   horizontalPosition: 3.45
   horizontalMoveForceMultiplier: 30
   maximumAttainableMoveForce: 60
-  launchPowerScalar: 0.1
+  launchPowerScalar: 0.85
   launchSteepness: 1.35
   launchMaximumForce: 20
   launchOffset: 0.3
