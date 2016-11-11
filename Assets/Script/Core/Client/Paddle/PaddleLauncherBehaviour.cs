@@ -49,12 +49,18 @@ namespace mUnityFramework.Game.Pong {
 
 		private Vector3 DeriveLaunchForce (Ball ball, float multiplierPercentage, float steepness = 0.0f) {
 			return (
-				new Vector3 (
+				new Vector3 (    // create the power vector
 					rb.velocity.x, 
 					paddle.Property.LaunchSteepness,
 					0f
-				).normalized * ball.Rb.mass * multiplierPercentage
-			).Truncate (paddle.Property.LaunchMaximumForce); // limit the power vector
+				).normalized * ( // set to unit size then scale
+					ball.Rb.mass * 
+					multiplierPercentage * 
+					paddle.Property.LaunchPowerScalar
+				)
+			).Truncate (         // finally, limit by max allowed magnitude 
+				paddle.Property.LaunchMaximumForce
+			); 
 		}
 
 		public void LaunchUpdate () {
